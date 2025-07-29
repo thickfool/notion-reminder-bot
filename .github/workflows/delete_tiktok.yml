@@ -1,0 +1,22 @@
+name: Delete TikTok Reminder
+
+on:
+  schedule:
+    - cron: '0 9 * * *'    # 9:00 AM UTC (10:00 AM BST)
+    - cron: '18 19 * * *'  # 7:18 PM UTC (8:18 PM BST)
+
+  workflow_dispatch:
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Telegram message
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: |
+          curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
+          -d chat_id=${CHAT_ID} \
+          -d text="🧼 Time to delete TikTok. You promised. Do it."
