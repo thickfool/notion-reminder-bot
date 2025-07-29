@@ -19,4 +19,4 @@ jobs:
         run: |
           curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
           -d chat_id=${CHAT_ID} \
-          -d text="🧼 Time to delete TikTok. You promised. Do it."
+          -d text="🧼 Delete Tiktok."
